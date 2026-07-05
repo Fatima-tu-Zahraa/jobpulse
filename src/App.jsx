@@ -39,7 +39,7 @@ function Navigation() {
                   <p className="text-xs text-gray-500">AI-Powered Job Tracker</p>
                 </div>
 
-                <a href="https://github.com/your-username/jobpulse" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                <a href="https://github.com/Fatima-tu-Zahraa/jobpulse" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   <Code2 size={16} />
                   View on GitHub
                 </a>

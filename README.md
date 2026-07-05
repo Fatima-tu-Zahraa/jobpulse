@@ -2,7 +2,7 @@
 
 An AI-powered job application tracker that helps you organize your job search, track application status, and analyze job descriptions with AI.
 
-**Live Demo:** [jobpulse.vercel.app](https://jobpulse.vercel.app) <!-- Update after deploy -->
+**Live Demo:** [jobpulse-jade.vercel.app](https://jobpulse-jade.vercel.app)
 
 ---
 
