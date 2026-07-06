@@ -13,9 +13,7 @@ function KanbanBoard() {
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
+      activationConstraint: { distance: 8 },
     })
   )
 
@@ -38,11 +36,7 @@ function KanbanBoard() {
   function handleDragEnd(event) {
     const { active, over } = event
     if (!over) return
-
-    const draggedAppId = active.id
-    const newStatus = over.id
-
-    moveApplication(draggedAppId, newStatus)
+    moveApplication(active.id, over.id)
     setActiveId(null)
   }
 
@@ -56,13 +50,13 @@ function KanbanBoard() {
       >
         <div className="min-h-screen bg-slate-50">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center px-6 pt-6">
-              <p className="text-sm text-gray-500">
+            <div className="flex justify-between items-center px-4 md:px-6 pt-4 md:pt-6">
+              <p className="text-xs md:text-sm text-gray-500">
                 Track and manage your job applications
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-blue-600 text-white text-sm rounded-lg px-4 py-2 hover:bg-blue-700"
+                className="bg-blue-600 text-white text-xs md:text-sm rounded-lg px-3 md:px-4 py-2 hover:bg-blue-700 whitespace-nowrap"
               >
                 + Add Application
               </button>
@@ -71,12 +65,10 @@ function KanbanBoard() {
             {isLoading ? (
               <div className="flex flex-col justify-center items-center py-20 gap-3">
                 <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
-                <p className="text-gray-400 text-sm">
-                  Loading your applications...
-                </p>
+                <p className="text-gray-400 text-sm">Loading your applications...</p>
               </div>
             ) : (
-              <div className="flex gap-4 p-6 overflow-x-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 p-4 md:p-6">
                 {columns.map((columnTitle) => {
                   const filteredApps = applications.filter(
                     (app) => app.status === columnTitle

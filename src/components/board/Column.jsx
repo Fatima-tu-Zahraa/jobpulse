@@ -3,14 +3,12 @@ import { AnimatePresence } from 'framer-motion'
 import ApplicationCard from './ApplicationCard'
 
 function Column({ id, title, applications }) {
-  const { setNodeRef, isOver } = useDroppable({
-    id: id,
-  })
+  const { setNodeRef, isOver } = useDroppable({ id: id })
 
   return (
     <div
       ref={setNodeRef}
-      className={`rounded-xl p-4 w-72 flex-shrink-0 transition-colors ${
+      className={`rounded-xl p-4 w-full transition-colors ${
         isOver ? 'bg-blue-100' : 'bg-gray-100'
       }`}
     >
@@ -37,6 +35,7 @@ function Column({ id, title, applications }) {
                 company={app.company}
                 role={app.role}
                 appliedDate={app.appliedDate}
+                notes={app.notes}
               />
             ))}
           </AnimatePresence>

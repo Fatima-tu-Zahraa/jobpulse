@@ -1,5 +1,5 @@
 import { Briefcase, TrendingUp, Calendar } from 'lucide-react'
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts'
+import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts'
 import useApplicationStore from '../../store/useApplicationStore'
 
 const COLORS = {
@@ -11,7 +11,6 @@ const COLORS = {
 
 function AnalyticsDashboard() {
   const applications = useApplicationStore((state) => state.applications)
-
   const statuses = ['Applied', 'Interview', 'Offer', 'Rejected']
 
   const chartData = statuses.map((status) => ({
@@ -29,7 +28,7 @@ function AnalyticsDashboard() {
       : Math.round((interviewCount / totalApplications) * 100)
 
   return (
-    <div className="p-6 min-h-screen bg-slate-50">
+    <div className="p-4 md:p-6 min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-xl font-bold text-gray-800 mb-6">Analytics</h2>
 
@@ -39,9 +38,7 @@ function AnalyticsDashboard() {
               <p className="text-gray-500 text-sm">Total Applications</p>
               <Briefcase size={18} className="text-blue-500" />
             </div>
-            <p className="text-3xl font-bold text-gray-800 mt-1">
-              {totalApplications}
-            </p>
+            <p className="text-3xl font-bold text-gray-800 mt-1">{totalApplications}</p>
           </div>
 
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
@@ -49,9 +46,7 @@ function AnalyticsDashboard() {
               <p className="text-gray-500 text-sm">Response Rate</p>
               <TrendingUp size={18} className="text-green-500" />
             </div>
-            <p className="text-3xl font-bold text-gray-800 mt-1">
-              {responseRate}%
-            </p>
+            <p className="text-3xl font-bold text-gray-800 mt-1">{responseRate}%</p>
           </div>
 
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
@@ -65,33 +60,30 @@ function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 max-w-md">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">
-            Status Breakdown
-          </h3>
-
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 w-full">
+          <h3 className="text-sm font-semibold text-gray-700 mb-4">Status Breakdown</h3>
           {totalApplications === 0 ? (
-            <p className="text-gray-400 text-sm">
-              No applications yet. Add one to see your stats here.
-            </p>
+            <p className="text-gray-400 text-sm">No applications yet.</p>
           ) : (
-            <PieChart width={350} height={250}>
-              <Pie
-                data={chartData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-              >
-                {chartData.map((entry) => (
-                  <Cell key={entry.name} fill={COLORS[entry.name]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={80}
+                >
+                  {chartData.map((entry) => (
+                    <Cell key={entry.name} fill={COLORS[entry.name]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
           )}
         </div>
       </div>
