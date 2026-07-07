@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { DndContext, closestCorners, useSensor, useSensors, PointerSensor } from '@dnd-kit/core'
-import { Loader2 } from 'lucide-react'
+import { Loader2, AlertCircle } from 'lucide-react'
 import Column from './Column'
 import AddApplicationModal from '../modals/AddApplicationModal'
 import useApplicationStore from '../../store/useApplicationStore'
@@ -20,11 +20,19 @@ function KanbanBoard() {
   const [activeId, setActiveId] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [loadError, setLoadError] = useState(false)
 
   useEffect(() => {
     async function loadData() {
-      await fetchApplications()
-      setIsLoading(false)
+      setLoadError(false)
+      try {
+        await fetchApplications()
+      } catch (err) {
+        console.error('Failed to fetch applications:', err)
+        setLoadError(true)
+      } finally {
+        setIsLoading(false)
+      }
     }
     loadData()
   }, [])
@@ -38,6 +46,16 @@ function KanbanBoard() {
     if (!over) return
     moveApplication(active.id, over.id)
     setActiveId(null)
+  }
+
+  function handleRetry() {
+    setIsLoading(true)
+    fetchApplications()
+      .catch((err) => {
+        console.error('Failed to fetch applications:', err)
+        setLoadError(true)
+      })
+      .finally(() => setIsLoading(false))
   }
 
   return (
@@ -66,6 +84,17 @@ function KanbanBoard() {
               <div className="flex flex-col justify-center items-center py-20 gap-3">
                 <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
                 <p className="text-gray-400 text-sm">Loading your applications...</p>
+              </div>
+            ) : loadError ? (
+              <div className="flex flex-col justify-center items-center py-20 gap-3">
+                <AlertCircle className="w-6 h-6 text-red-500" />
+                <p className="text-gray-500 text-sm">Couldn't load your applications.</p>
+                <button
+                  onClick={handleRetry}
+                  className="text-blue-600 text-sm font-medium hover:underline"
+                >
+                  Try again
+                </button>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 p-4 md:p-6">

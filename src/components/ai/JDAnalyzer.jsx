@@ -18,6 +18,11 @@ function JDAnalyzer() {
     const missingMatch = text.match(/MISSING SKILLS:\s*(.+)/i)
     const percentMatch = text.match(/MATCH PERCENTAGE:\s*(\d+)/i)
 
+    if (!matchingMatch && !missingMatch && !percentMatch) {
+      setError('Could not read the AI response. Please try again.')
+      return false
+    }
+
     const matching = matchingMatch
       ? matchingMatch[1].split(',').map((s) => s.trim()).filter(Boolean)
       : []
@@ -29,6 +34,7 @@ function JDAnalyzer() {
     setMatchingSkills(matching)
     setMissingSkills(missing)
     setMatchPercentage(percent)
+    return true
   }
 
   async function handleAnalyze() {
@@ -45,11 +51,11 @@ function JDAnalyzer() {
 
     try {
       const model = genAI.getGenerativeModel({
-  model: 'gemini-2.5-flash',
-  generationConfig: {
-    temperature: 0.2,
-  },
-})
+        model: 'gemini-2.5-flash',
+        generationConfig: {
+          temperature: 0.2,
+        },
+      })
 
       const prompt = `You are a career assistant. Compare the candidate's skills with the job description below.
 

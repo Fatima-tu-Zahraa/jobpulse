@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { User, Code2, ExternalLink, Menu, X } from 'lucide-react'
 import KanbanBoard from './components/board/KanbanBoard'
@@ -9,6 +9,7 @@ function Navigation() {
   const location = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
+  const menuRef = useRef(null)
 
   const navLinks = [
     { to: '/', label: 'Board' },
@@ -16,8 +17,18 @@ function Navigation() {
     { to: '/analyzer', label: 'AI Analyzer' },
   ]
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   return (
-    <nav className="bg-white border-b border-gray-200 px-4 lg:px-6">
+    <nav className="bg-white border-b border-gray-200 px-4 md:px-6">
       <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
         <h1 className="text-xl font-bold text-gray-800">JobPulse</h1>
 
@@ -38,7 +49,7 @@ function Navigation() {
             ))}
           </div>
 
-          <div className="relative">
+          <div className="relative" ref={menuRef}>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="flex items-center justify-center w-9 h-9 bg-blue-600 rounded-full text-white hover:bg-blue-700"
