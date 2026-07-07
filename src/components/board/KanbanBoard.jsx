@@ -74,7 +74,7 @@ function KanbanBoard() {
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-blue-600 text-white text-xs md:text-sm rounded-lg px-3 md:px-4 py-2 hover:bg-blue-700 whitespace-nowrap"
+                className="bg-indigo-600 text-white text-xs md:text-sm rounded-lg px-3 md:px-4 py-2 hover:bg-indigo-700 whitespace-nowrap"
               >
                 + Add Application
               </button>
@@ -82,7 +82,7 @@ function KanbanBoard() {
 
             {isLoading ? (
               <div className="flex flex-col justify-center items-center py-20 gap-3">
-                <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
+                <Loader2 className="w-6 h-6 text-indigo-500 animate-spin" />
                 <p className="text-gray-400 text-sm">Loading your applications...</p>
               </div>
             ) : loadError ? (
@@ -91,7 +91,7 @@ function KanbanBoard() {
                 <p className="text-gray-500 text-sm">Couldn't load your applications.</p>
                 <button
                   onClick={handleRetry}
-                  className="text-blue-600 text-sm font-medium hover:underline"
+                  className="text-indigo-600 text-sm font-medium hover:underline"
                 >
                   Try again
                 </button>

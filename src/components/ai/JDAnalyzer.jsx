@@ -102,7 +102,7 @@ MATCH PERCENTAGE: (a single number 0-100 estimating overall fit)`
                   value={jobDescription}
                   onChange={(e) => setJobDescription(e.target.value)}
                   placeholder="Paste the job description here..."
-                  className="w-full h-48 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-48 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
@@ -114,7 +114,7 @@ MATCH PERCENTAGE: (a single number 0-100 estimating overall fit)`
                   value={mySkills}
                   onChange={(e) => setMySkills(e.target.value)}
                   placeholder="e.g. React, JavaScript, Tailwind CSS, Git..."
-                  className="w-full h-48 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-48 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
             </div>
@@ -122,7 +122,7 @@ MATCH PERCENTAGE: (a single number 0-100 estimating overall fit)`
             <button
               onClick={handleAnalyze}
               disabled={isLoading}
-              className="mt-4 bg-blue-600 text-white text-sm rounded-lg px-5 py-2 hover:bg-blue-700 disabled:opacity-50"
+              className="mt-4 bg-amber-500 text-white text-sm rounded-lg px-5 py-2 hover:bg-amber-600 disabled:opacity-50"
             >
               {isLoading ? 'Analyzing... (this may take 10-15 seconds)' : 'Analyze Match'}
             </button>
@@ -136,13 +136,13 @@ MATCH PERCENTAGE: (a single number 0-100 estimating overall fit)`
                     <span className="text-sm font-medium text-gray-700">
                       Overall Match
                     </span>
-                    <span className="text-2xl font-bold text-blue-600">
+                    <span className="text-2xl font-bold text-indigo-600">
                       {matchPercentage}%
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
                     <div
-                      className="bg-blue-600 h-2.5 rounded-full transition-all"
+                      className="bg-amber-500 h-2.5 rounded-full transition-all"
                       style={{ width: `${matchPercentage}%` }}
                     />
                   </div>
@@ -183,9 +183,9 @@ MATCH PERCENTAGE: (a single number 0-100 estimating overall fit)`
             )}
           </div>
 
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 h-fit">
+          <div className="bg-amber-50 border border-amber-100 rounded-xl p-5 h-fit">
             <div className="flex items-center gap-2 mb-3">
-              <Lightbulb size={18} className="text-blue-600" />
+              <Lightbulb size={18} className="text-amber-600" />
               <h3 className="text-sm font-semibold text-gray-800">
                 Tips for Better Results
               </h3>

@@ -36,7 +36,7 @@ function AnalyticsDashboard() {
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between mb-2">
               <p className="text-gray-500 text-sm">Total Applications</p>
-              <Briefcase size={18} className="text-blue-500" />
+              <Briefcase size={18} className="text-indigo-500" />
             </div>
             <p className="text-3xl font-bold text-gray-800 mt-1">{totalApplications}</p>
           </div>
