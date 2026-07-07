@@ -46,7 +46,7 @@ function ApplicationCard({ id, company, role, appliedDate, notes }) {
           {...listeners}
           {...attributes}
           onClick={handleCardClick}
-          className="cursor-grab active:cursor-grabbing"
+          className="cursor-grab active:cursor-grabbing touch-none"
         >
           <h3 className="font-semibold text-gray-800 text-sm pr-6">{company}</h3>
           <p className="text-gray-500 text-xs mt-1">{role}</p>
