@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { DndContext, closestCorners, useSensor, useSensors, PointerSensor } from '@dnd-kit/core'
+import { DndContext, closestCorners, useSensor, useSensors, PointerSensor, TouchSensor } from '@dnd-kit/core'
 import { Loader2, AlertCircle } from 'lucide-react'
 import Column from './Column'
 import AddApplicationModal from '../modals/AddApplicationModal'
@@ -14,6 +14,9 @@ function KanbanBoard() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 8 },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 150, tolerance: 5 },
     })
   )
 

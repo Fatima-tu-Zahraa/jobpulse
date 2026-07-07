@@ -56,7 +56,7 @@ function ApplicationCard({ id, company, role, appliedDate, notes }) {
         <button
           onClick={handleDelete}
           onPointerDown={(e) => e.stopPropagation()}
-          className="absolute top-2 right-2 text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+          className="absolute top-2 right-2 text-gray-400 sm:text-gray-300 sm:opacity-0 sm:group-hover:opacity-100 hover:text-red-500 transition-opacity z-10"
         >
           <Trash2 size={16} />
         </button>
