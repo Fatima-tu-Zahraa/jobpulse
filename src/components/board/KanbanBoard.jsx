@@ -50,13 +50,13 @@ function KanbanBoard() {
       >
         <div className="min-h-screen bg-slate-50">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center px-4 lg:px-6 pt-4 lg:pt-6">
-              <p className="text-xs lg:text-sm text-gray-500">
+            <div className="flex justify-between items-center px-4 md:px-6 pt-4 md:pt-6">
+              <p className="text-xs md:text-sm text-gray-500">
                 Track and manage your job applications
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-blue-600 text-white text-xs lg:text-sm rounded-lg px-3 lg:px-4 py-2 hover:bg-blue-700 whitespace-nowrap"
+                className="bg-blue-600 text-white text-xs md:text-sm rounded-lg px-3 md:px-4 py-2 hover:bg-blue-700 whitespace-nowrap"
               >
                 + Add Application
               </button>
@@ -68,7 +68,7 @@ function KanbanBoard() {
                 <p className="text-gray-400 text-sm">Loading your applications...</p>
               </div>
             ) : (
-              <div className="flex flex-col lg:flex-row gap-4 p-4 lg:p-6 lg:overflow-x-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 p-4 md:p-6">
                 {columns.map((columnTitle) => {
                   const filteredApps = applications.filter(
                     (app) => app.status === columnTitle
