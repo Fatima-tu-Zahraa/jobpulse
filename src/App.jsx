@@ -17,7 +17,7 @@ function Navigation() {
   ]
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-4 md:px-6">
+    <nav className="bg-white border-b border-gray-200 px-4 lg:px-6">
       <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
         <h1 className="text-xl font-bold text-gray-800">JobPulse</h1>
 

@@ -8,7 +8,7 @@ function Column({ id, title, applications }) {
   return (
     <div
       ref={setNodeRef}
-      className={`rounded-xl p-4 w-full transition-colors ${
+      className={`rounded-xl p-4 w-full lg:w-72 lg:flex-shrink-0 transition-colors ${
         isOver ? 'bg-blue-100' : 'bg-gray-100'
       }`}
     >
